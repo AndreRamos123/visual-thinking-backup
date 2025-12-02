@@ -20,9 +20,13 @@ interface Product {
 }
 interface ProductsGraphProps {
   products: Product[];
+  loading: boolean;
 }
 
-export default function ProductsGraph({ products }: ProductsGraphProps) {
+export default function ProductsGraph({
+  products,
+  loading,
+}: ProductsGraphProps) {
   return (
     <div className="rounded-xl border bg-white text-slate-950 shadow">
       <div className="flex flex-col space-y-1.5 p-6">
@@ -31,7 +35,16 @@ export default function ProductsGraph({ products }: ProductsGraphProps) {
         </h3>
         <p className="text-sm text-slate-500">Real-time inventory analysis</p>
       </div>
-      <div className=" p-6 pt-0 pl-0 pb-8 h-[300px] w-full">
+
+      {/* Chart wrapper */}
+      <div className="relative p-6 pt-0 pl-0 pb-8 h-[300px] w-full">
+        {/* Overlay */}
+        {loading && (
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-sm flex items-center justify-center z-10">
+            <div className="animate-spin h-8 w-8 border-4 border-slate-300 border-t-slate-900 rounded-full"></div>
+          </div>
+        )}
+
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={products} margin={{ bottom: 16 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />

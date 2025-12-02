@@ -52,7 +52,7 @@ export default function Dashboard() {
         />
         <div className="p-4 sm:p-6 md:p-8 space-y-8 max-w-full">
           <div className="w-full max-w-5xl mx-auto space-y-6">
-            <ProductsGraph products={products} />
+            <ProductsGraph products={products} loading={loading} />
             <ProductsTable
               products={products}
               loading={loading}
