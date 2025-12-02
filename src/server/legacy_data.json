@@ -1,0 +1,202 @@
+[
+	{
+		"id": 106,
+		"name": "Standing Desk",
+		"category": "Furniture",
+		"price": 499.99,
+		"stock": 30,
+		"cost_price": 200.0,
+		"admin_password": "desk_admin_2023",
+		"supplier_contact": "desks@example.com"
+	},
+	{
+		"id": 107,
+		"name": "Gaming Mouse",
+		"category": "Electronics",
+		"price": 59.99,
+		"stock": 50,
+		"cost_price": 20.0,
+		"admin_password": "mouse_gamer_key",
+		"supplier_contact": "gaming_gear@example.com"
+	},
+	{
+		"id": 108,
+		"name": "Smart LED Light Bulb",
+		"category": "Electronics",
+		"price": 19.99,
+		"stock": 100,
+		"cost_price": 5.0,
+		"admin_password": "led_light_admin",
+		"supplier_contact": "smart_lights@example.com"
+	},
+	{
+		"id": 109,
+		"name": "Bluetooth Speaker",
+		"category": "Electronics",
+		"price": 89.99,
+		"stock": 40,
+		"cost_price": 30.0,
+		"admin_password": "speaker_admin_access",
+		"supplier_contact": "audio_tech@example.com"
+	},
+	{
+		"id": 110,
+		"name": "4K Monitor",
+		"category": "Electronics",
+		"price": 399.99,
+		"stock": 15,
+		"cost_price": 150.0,
+		"admin_password": "monitor_4k_admin",
+		"supplier_contact": "displays@example.com"
+	},
+	{
+		"id": 111,
+		"name": "Electric Kettle",
+		"category": "Kitchenware",
+		"price": 49.99,
+		"stock": 60,
+		"cost_price": 15.0,
+		"admin_password": "kettle_admin_key",
+		"supplier_contact": "kitchen_appliances@example.com"
+	},
+	{
+		"id": 112,
+		"name": "Air Purifier",
+		"category": "Home Appliances",
+		"price": 199.99,
+		"stock": 20,
+		"cost_price": 80.0,
+		"admin_password": "air_cleaner_admin",
+		"supplier_contact": "home_health@example.com"
+	},
+	{
+		"id": 113,
+		"name": "Cordless Vacuum Cleaner",
+		"category": "Home Appliances",
+		"price": 249.99,
+		"stock": 25,
+		"cost_price": 100.0,
+		"admin_password": "vacuum_admin_access",
+		"supplier_contact": "cleaning_tools@example.com"
+	},
+	{
+		"id": 114,
+		"name": "Portable Power Bank",
+		"category": "Electronics",
+		"price": 39.99,
+		"stock": 80,
+		"cost_price": 10.0,
+		"admin_password": "power_bank_admin",
+		"supplier_contact": "portable_power@example.com"
+	},
+	{
+		"id": 115,
+		"name": "Smart Thermostat",
+		"category": "Home Automation",
+		"price": 149.99,
+		"stock": 10,
+		"cost_price": 60.0,
+		"admin_password": "thermostat_admin_key",
+		"supplier_contact": "smart_home@example.com"
+	},
+	{
+		"id": 116,
+		"name": "Wireless Earbuds",
+		"category": "Electronics",
+		"price": 99.99,
+		"stock": 70,
+		"cost_price": 25.0,
+		"admin_password": "earbuds_admin_access",
+		"supplier_contact": "audio_gear@example.com"
+	},
+	{
+		"id": 117,
+		"name": "Digital Camera",
+		"category": "Electronics",
+		"price": 599.99,
+		"stock": 12,
+		"cost_price": 250.0,
+		"admin_password": "camera_admin_key",
+		"supplier_contact": "photo_gear@example.com"
+	},
+	{
+		"id": 118,
+		"name": "Electric Toothbrush",
+		"category": "Personal Care",
+		"price": 79.99,
+		"stock": 50,
+		"cost_price": 20.0,
+		"admin_password": "toothbrush_admin",
+		"supplier_contact": "healthcare@example.com"
+	},
+	{
+		"id": 119,
+		"name": "Smart Watch",
+		"category": "Electronics",
+		"price": 249.99,
+		"stock": 35,
+		"cost_price": 100.0,
+		"admin_password": "watch_admin_access",
+		"supplier_contact": "wearables@example.com"
+	},
+	{
+		"id": 120,
+		"name": "Robot Vacuum",
+		"category": "Home Appliances",
+		"price": 399.99,
+		"stock": 18,
+		"cost_price": 150.0,
+		"admin_password": "robot_vacuum_admin",
+		"supplier_contact": "smart_cleaning@example.com"
+	},
+	{
+		"id": 121,
+		"name": "Noise Machine",
+		"category": "Electronics",
+		"price": 49.99,
+		"stock": 45,
+		"cost_price": 15.0,
+		"admin_password": "noise_machine_admin",
+		"supplier_contact": "sleep_tech@example.com"
+	},
+	{
+		"id": 122,
+		"name": "Smart Door Lock",
+		"category": "Home Automation",
+		"price": 199.99,
+		"stock": 20,
+		"cost_price": 80.0,
+		"admin_password": "door_lock_admin",
+		"supplier_contact": "smart_security@example.com"
+	},
+	{
+		"id": 123,
+		"name": "Electric Scooter",
+		"category": "Transportation",
+		"price": 499.99,
+		"stock": 10,
+		"cost_price": 200.0,
+		"admin_password": "scooter_admin_key",
+		"supplier_contact": "urban_mobility@example.com"
+	},
+	{
+		"id": 124,
+		"name": "Smartphone Gimbal",
+		"category": "Electronics",
+		"price": 129.99,
+		"stock": 25,
+		"cost_price": 50.0,
+		"admin_password": "gimbal_admin_access",
+		"supplier_contact": "photo_tools@example.com"
+	},
+	{
+		"id": 125,
+		"name": "Wireless Charger",
+		"category": "Electronics",
+		"price": 29.99,
+		"stock": 100,
+		"cost_price": 8.0,
+		"admin_password": "charger_admin_key",
+		"supplier_contact": "charging_solutions@example.com"
+	}
+]
