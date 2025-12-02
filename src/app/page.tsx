@@ -47,17 +47,16 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="flex h-screen bg-white overflow-hidden">
+    <div className="flex flex-col lg:flex-row h-screen bg-white overflow-hidden">
       <Sidebar />
-      <main className="w-screen overflow-y-auto bg-slate-50">
+      <main className="flex-1 overflow-y-auto bg-slate-50">
         <DashboardHeader
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         />
-        <div className="p-8 space-y-8">
-          <div className="w-[1200px] space-y-6">
+        <div className="p-4 sm:p-6 md:p-8 space-y-8 max-w-full">
+          <div className="w-full max-w-5xl mx-auto space-y-6">
             <ProductsGraph products={products} />
-
             <ProductsTable
               products={paginatedProducts}
               loading={loading}

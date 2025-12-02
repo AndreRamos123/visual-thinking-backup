@@ -7,9 +7,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
+import GraphLable from "./GraphLable";
 
 interface Product {
   id: number;
@@ -18,10 +18,11 @@ interface Product {
   price: number;
   stock: number;
 }
-interface GraphProps {
+interface ProductsGraphProps {
   products: Product[];
 }
-export default function ProductsGraph({ products }: GraphProps) {
+
+export default function ProductsGraph({ products }: ProductsGraphProps) {
   return (
     <div className="rounded-xl border bg-white text-slate-950 shadow">
       <div className="flex flex-col space-y-1.5 p-6">
@@ -30,9 +31,9 @@ export default function ProductsGraph({ products }: GraphProps) {
         </h3>
         <p className="text-sm text-slate-500">Real-time inventory analysis</p>
       </div>
-      <div className="p-6 pt-0 h-[300px] w-full">
+      <div className=" p-6 pt-0 pl-0 pb-8 h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={products}>
+          <BarChart data={products} margin={{ bottom: 16 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis
               dataKey="name"
@@ -40,6 +41,8 @@ export default function ProductsGraph({ products }: GraphProps) {
               fontSize={12}
               tickLine={false}
               axisLine={false}
+              interval={0}
+              tick={<GraphLable />}
             />
             <YAxis
               stroke="#888888"
@@ -52,7 +55,6 @@ export default function ProductsGraph({ products }: GraphProps) {
               cursor={{ fill: "transparent" }}
               contentStyle={{
                 borderRadius: "8px",
-                border: "none",
                 boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
               }}
             />

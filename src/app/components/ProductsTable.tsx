@@ -26,8 +26,9 @@ export default function ProductsTable({
   return (
     <div className="rounded-xl border bg-white text-slate-950 shadow">
       <div className="p-6">
-        <div className="w-full overflow-auto">
-          <table className="w-full caption-bottom text-sm">
+        {/* Table for md+ screens */}
+        <div className="w-full overflow-x-auto hidden md:block">
+          <table className="min-w-[600px] w-full caption-bottom text-xs sm:text-sm">
             <thead className="[&_tr]:border-b">
               <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                 <th className="h-12 px-4 text-left align-middle font-medium text-slate-500">
@@ -61,7 +62,7 @@ export default function ProductsTable({
                   </td>
                 </tr>
               ) : (
-                products.map((product: any) => (
+                products.map((product) => (
                   <tr
                     key={product.id}
                     className="border-b transition-colors hover:bg-slate-100/50 data-[state=selected]:bg-slate-100"
@@ -96,6 +97,68 @@ export default function ProductsTable({
               )}
             </tbody>
           </table>
+        </div>
+        {/* Cards for small screens */}
+        <div className="block md:hidden">
+          {loading ? (
+            <div className="p-4 text-center">Loading data from server...</div>
+          ) : products.length === 0 ? (
+            <div className="p-4 text-center">No products on this page.</div>
+          ) : (
+            <div className="space-y-4">
+              {products.map((product) => (
+                <div
+                  key={product.id}
+                  className="border rounded-lg p-4 shadow-sm flex flex-col gap-2"
+                >
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-slate-500 font-medium">
+                      ID
+                    </span>
+                    <span className="font-bold text-[#334155]">
+                      #{product.id}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-slate-500 font-medium">
+                      Product
+                    </span>
+                    <span className="text-base font-bold text-[#334155]">
+                      {product.name}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-slate-500 font-medium">
+                      Category
+                    </span>
+                    <span className="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs font-semibold text-slate-950">
+                      {product.category}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-slate-500 font-medium">
+                      Price
+                    </span>
+                    <span className="font-medium">
+                      ${product.price.toFixed(2)}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-slate-500 font-medium">
+                      Status
+                    </span>
+                    {product.stock < 20 ? (
+                      <span className="text-red-600">Low Stock</span>
+                    ) : (
+                      <span className="text-emerald-600 font-medium">
+                        In Stock
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="mt-4 flex items-center justify-between">
           <div>
