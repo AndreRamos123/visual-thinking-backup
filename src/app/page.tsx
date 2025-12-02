@@ -20,6 +20,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState(1);
   const pageSize = 5;
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Dashboard() {
           `/api/products?q=${searchQuery}&page=${currentPage}`
         );
         const data = await res.json();
+        setTotalPages(parseInt(res.headers.get("X-Total-Pages") || "1"));
         setProducts(data);
         setLoading(false);
       } catch (e) {
@@ -39,12 +41,6 @@ export default function Dashboard() {
     };
     fetchData();
   }, [searchQuery, currentPage]);
-
-  const totalPages = Math.max(1, Math.ceil(products.length / pageSize));
-  const paginatedProducts = products.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
 
   return (
     <div className="flex flex-col lg:flex-row h-screen bg-white overflow-hidden">
@@ -58,13 +54,15 @@ export default function Dashboard() {
           <div className="w-full max-w-5xl mx-auto space-y-6">
             <ProductsGraph products={products} />
             <ProductsTable
-              products={paginatedProducts}
+              products={products}
               loading={loading}
               currentPage={currentPage}
               totalPages={totalPages}
               onPrevPage={() => setCurrentPage((p) => Math.max(1, p - 1))}
               onNextPage={() =>
-                setCurrentPage((p) => Math.min(totalPages, p + 1))
+                setCurrentPage((p) => {
+                  return Math.min(totalPages, p + 1);
+                })
               }
             />
           </div>
