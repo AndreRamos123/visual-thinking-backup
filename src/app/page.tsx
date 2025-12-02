@@ -26,7 +26,6 @@ export default function Dashboard() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        setProducts([]);
         const res = await fetch(
           `/api/products?q=${searchQuery}&page=${currentPage}`
         );
