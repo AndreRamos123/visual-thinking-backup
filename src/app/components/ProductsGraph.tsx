@@ -30,7 +30,7 @@ export default function ProductsGraph({ products }: GraphProps) {
         </h3>
         <p className="text-sm text-slate-500">Real-time inventory analysis</p>
       </div>
-      <div className="p-6 pt-0" style={{ height: "300px", width: "100%" }}>
+      <div className="p-6 pt-0 h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={products}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />

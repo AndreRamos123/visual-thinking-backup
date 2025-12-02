@@ -70,13 +70,7 @@ export default function ProductsTable({
                       #{product.id}
                     </td>
                     <td className="p-4 align-middle">
-                      <span
-                        style={{
-                          fontSize: "16px",
-                          fontWeight: "bold",
-                          color: "#334155",
-                        }}
-                      >
+                      <span className="text-[16px] font-bold text-[#334155]">
                         {product.name}
                       </span>
                     </td>
@@ -90,7 +84,7 @@ export default function ProductsTable({
                     </td>
                     <td className="p-4 align-middle">
                       {product.stock < 20 ? (
-                        <span style={{ color: "red" }}>Low Stock</span>
+                        <span className="text-red-600 ">Low Stock</span>
                       ) : (
                         <span className="text-emerald-600 font-medium">
                           In Stock

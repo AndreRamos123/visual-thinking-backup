@@ -56,7 +56,7 @@ export default function Dashboard() {
           setSearchQuery={setSearchQuery}
         />
         <div className="p-8 space-y-8">
-          <div style={{ width: "1200px" }} className="space-y-6">
+          <div className="w-[1200px] space-y-6">
             <ProductsGraph products={products} />
 
             <ProductsTable
