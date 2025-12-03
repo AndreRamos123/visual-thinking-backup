@@ -244,5 +244,3 @@ Porquê: Proteger dados sensíveis e contra ataques comuns. As mudanças incluem
 
 - Remover tokens de localStorage e usar apenas HTTP-only cookies
 - Adicionar flags `Secure` e `SameSite=Strict` aos cookies
-
-### Considerações
