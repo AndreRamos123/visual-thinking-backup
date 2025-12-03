@@ -1,0 +1,88 @@
+import React from "react";
+
+import { useEffect, useState } from "react";
+
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  stock: number;
+}
+
+interface DashboardHeaderProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  products: Product[];
+}
+
+const DELAY = 500;
+
+export default function DashboardHeader({
+  searchQuery,
+  setSearchQuery,
+  products,
+}: DashboardHeaderProps) {
+  const [value, setValue] = useState(searchQuery);
+  const [debouncedValue, setDebouncedValue] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, DELAY);
+
+    return () => clearTimeout(handler);
+  }, [value]);
+
+  useEffect(() => {
+    if (debouncedValue) {
+      setSearchQuery(debouncedValue);
+    }
+  }, [debouncedValue]);
+
+  const handleExportCSV = () => {
+    if (!products || products.length === 0) return;
+    const header = "ID,Name,Category,Price,Stock\n";
+    const rows = products
+      .map(
+        (p) =>
+          `${p.id},"${p.name.replace(/"/g, '""')}","${p.category.replace(
+            /"/g,
+            '""'
+          )}",${p.price},${p.stock}`
+      )
+      .join("\n");
+    const csv = header + rows;
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "products.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="border-b border-[#e2e8f0] p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white gap-4">
+      <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+        Product Overview
+      </h2>
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
+        <input
+          className="flex h-10 w-full sm:w-[300px] rounded-md border border-black bg-transparent px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400"
+          placeholder="Server-side search..."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <button
+          type="button"
+          onClick={handleExportCSV}
+          className="w-full sm:w-auto inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 bg-slate-900 text-slate-50 hover:bg-slate-900/90 h-10 px-4 py-2"
+        >
+          Export Data
+        </button>
+      </div>
+    </div>
+  );
+}
