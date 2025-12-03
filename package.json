@@ -21,6 +21,8 @@
 		"@libsql/client": "^0.15.15",
 		"@t3-oss/env-nextjs": "^0.13.8",
 		"drizzle-orm": "^0.44.7",
+		"firebase": "^12.6.0",
+		"firebase-admin": "^13.6.0",
 		"next": "^16.0.3",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",

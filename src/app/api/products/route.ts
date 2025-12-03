@@ -1,8 +1,20 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { verifyToken } from "@/lib/auth";
 
-export async function GET(request: any) {
+export async function GET(request: NextRequest) {
+  // Verify token
+  const tokenVerification = await verifyToken(request);
+
+  if (!tokenVerification.valid) {
+    console.error("Token verification failed:", tokenVerification.error);
+    return NextResponse.json(
+      { error: tokenVerification.error },
+      { status: 401 }
+    );
+  }
+
   try {
     const search = request.nextUrl.searchParams.get("q");
     const page = request.nextUrl.searchParams.get("page") || "1";
@@ -44,6 +56,7 @@ function randomdelay() {
   const delay = Math.floor(Math.random() * 2500) + 500;
   return new Promise((resolve) => setTimeout(resolve, delay));
 }
+
 function randomStock() {
   return Math.floor(Math.random() * 100);
 }

@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { IoIosLogOut } from "react-icons/io";
+
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
+  const handleLogout = async () => {
+    document.cookie = "authToken=; path=/; max-age=0";
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
   return (
     <>
       {/* Menu button for mobile */}
@@ -27,7 +36,7 @@ export default function Sidebar() {
       <aside
         className={`
           fixed top-0 left-0 z-40 h-full w-60 bg-[#0f172a] text-white shrink-0
-          transform transition-transform duration-200
+          transform transition-transform duration-200 flex flex-col
           ${open ? "translate-x-0" : "-translate-x-full"}
           lg:static lg:translate-x-0 lg:w-[300px] lg:min-h-screen
         `}
@@ -44,7 +53,7 @@ export default function Sidebar() {
             <FiX size={28} />
           </button>
         </div>
-        <nav className="mt-5">
+        <nav className="mt-5 flex-1">
           <ul className="space-y-1 px-4">
             <li
               className="bg-slate-800 text-white rounded-md p-3 cursor-pointer font-medium"
@@ -53,6 +62,16 @@ export default function Sidebar() {
               }}
             >
               Dashboard
+            </li>
+          </ul>
+        </nav>
+        <nav className="p-4 border-t border-[#1e293b]">
+          <ul className="space-y-1">
+            <li
+              className="text-slate-300 flex flex-row items-center gap-2 rounded-md p-3 cursor-pointer hover:bg-slate-700 hover:text-white"
+              onClick={() => handleLogout()}
+            >
+              <p>Logout</p> <IoIosLogOut />
             </li>
           </ul>
         </nav>

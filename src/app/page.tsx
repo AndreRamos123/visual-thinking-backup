@@ -6,6 +6,7 @@ import ProductsTable from "./components/ProductsTable";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import DashboardHeader from "./components/DashboardHeader";
+import { useRouter } from "next/navigation";
 
 interface Product {
   id: number;
@@ -21,26 +22,48 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pageSize = 5;
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.log("No token found, redirecting to login");
+        router.push("/login");
+        return;
+      }
+
       setLoading(true);
       try {
         const res = await fetch(
-          `/api/products?q=${searchQuery}&page=${currentPage}`
+          `/api/products?q=${searchQuery}&page=${currentPage}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
+
+        if (!res.ok) {
+          console.log("API Error:", res.status);
+          setProducts([]);
+          setLoading(false);
+          return;
+        }
+
         const data = await res.json();
-        setTotalPages(parseInt(res.headers.get("X-Total-Pages") || "1"));
+
         setProducts(data);
+        setTotalPages(parseInt(res.headers.get("X-Total-Pages") || "1"));
         setLoading(false);
       } catch (e) {
-        console.error(e);
+        console.log("Fetch error:", e);
+        setProducts([]);
         setLoading(false);
       }
     };
     fetchData();
-  }, [searchQuery, currentPage]);
+  }, [searchQuery, currentPage, router]);
 
   return (
     <div className="flex flex-col lg:flex-row h-screen bg-white overflow-hidden">
