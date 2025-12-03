@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { verifyToken } from "@/lib/auth";
+import { getProducts } from "@/lib/firestore";
+
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  stock?: number;
+}
 
 export async function GET(request: NextRequest) {
   // Verify token
@@ -16,45 +23,36 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const search = request.nextUrl.searchParams.get("q");
-    const page = request.nextUrl.searchParams.get("page") || "1";
+    const page = parseInt(request.nextUrl.searchParams.get("page") || "1");
+    const pageSize = 5;
 
-    const filePath = path.join(process.cwd(), "src/server/legacy_data.json");
-    const fileData = fs.readFileSync(filePath, "utf8");
-
-    const jsonData = JSON.parse(fileData);
-    const totalItems = jsonData.length;
-    const paginatedData = jsonData.slice(
-      (parseInt(page) - 1) * 5,
-      parseInt(page) * 5
+    const { products, totalPages, totalItems } = await getProducts(
+      page,
+      pageSize
     );
-
-    await randomdelay();
-
-    const totalPages = Math.ceil(totalItems / 5);
+    console.log(products.length);
     const responseHeaders = {
       "X-Total-Count": totalItems.toString(),
       "X-Total-Pages": totalPages.toString(),
     };
 
     return NextResponse.json(
-      paginatedData.map((item: any) => ({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        category: item.category,
+      (products as Product[]).map((product) => ({
+        id: product.id,
+        category: product.category,
+        name: product.name,
+        price: product.price,
         stock: randomStock(),
       })),
       { headers: responseHeaders }
     );
   } catch (error) {
-    return NextResponse.json({ error: "Failed to load data" }, { status: 500 });
+    console.error("Error:", error);
+    return NextResponse.json(
+      { error: "Failed to load products" },
+      { status: 500 }
+    );
   }
-}
-
-function randomdelay() {
-  const delay = Math.floor(Math.random() * 2500) + 500;
-  return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
 function randomStock() {
