@@ -26,7 +26,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem("token");
+      const getCookie = (name: string) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop()?.split(";").shift();
+        return null;
+      };
+
+      const token = getCookie("authToken");
       if (!token) {
         console.log("No token found, redirecting to login");
         router.push("/login");

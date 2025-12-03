@@ -40,9 +40,7 @@ export default function LoginPage() {
         return;
       }
 
-      // Set secure cookie
-      document.cookie = `authToken=${data.idToken}; path=/; max-age=3600; SameSite=Lax`;
-      localStorage.setItem("token", data.idToken);
+      document.cookie = `authToken=${data.idToken}; path=/; max-age=3600; SameSite=Strict; Secure`;
 
       // Small delay to ensure cookie is set
       setTimeout(() => {

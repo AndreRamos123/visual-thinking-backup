@@ -9,8 +9,7 @@ export default function Sidebar() {
   const router = useRouter();
 
   const handleLogout = async () => {
-    document.cookie = "authToken=; path=/; max-age=0";
-    localStorage.removeItem("token");
+    document.cookie = "authToken=; path=/; max-age=0; Secure; SameSite=Strict";
     router.push("/login");
   };
   return (
