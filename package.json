@@ -14,9 +14,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@libsql/client": "^0.15.15",
+    "@opentelemetry/api": "^1.8.0",
     "@t3-oss/env-nextjs": "^0.13.8",
-    "drizzle-orm": "^0.44.7",
     "firebase": "^12.6.0",
     "firebase-admin": "^13.6.0",
     "next": "^16.0.3",
