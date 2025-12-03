@@ -49,6 +49,7 @@ export default function Dashboard() {
         <DashboardHeader
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          products={products}
         />
         <div className="p-4 sm:p-6 md:p-8 space-y-8 max-w-full">
           <div className="w-full max-w-5xl mx-auto space-y-6">
