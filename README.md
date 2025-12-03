@@ -191,3 +191,58 @@ Estes ficheiros são os primeiros locais a inspecionar ao avaliar o comportament
 **Boa sorte. Esperamos ver-te em breve.**
 
 ## Bibliotecas instaladas
+
+- `React Icons` - npm install react-icons
+- `Firebase` - npm install firebase
+- `Firebase Admin` - npm install firebase-admin
+
+### Alterações feitas
+
+# Observação: no final de cada mensagem de commit, coloquei um numero (ex.: #1) que representa a alteração feita nesta lista
+
+1 - O quê: Extrair o código para componentes individuais.
+Porquê: Torna mais fácil trabalhar separadamente em cada componente e identificar claramente a que componente cada parte do código pertence.
+
+2 - O quê: Remover todo o CSS que não seja necessário e substituí-lo por Tailwind.
+Porquê: Isto facilita a leitura e a interpretação do código. Quanto menos tecnologias estiverem "misturadas", mais simples e fácil se torna trabalhar no projecto.
+
+3 - O quê: Implementar debounce na barra de pesquisa.
+Porquê: Permite poupar fetches e queries desnecessários, melhora a experiência do utilizador (UX) e optimiza a performance. Tambem podia ter tulizado a bibloteca "Lodash" para fazer o debounce. Requerido no exercício (2.).
+
+4 - O quê: Impedir que o gráfico pisque (flicker) desnecessariamente
+Porquê: Melhora a UX. Requerido no exercício (3.).
+
+5 - O quê: Dados sensíveis não são visíveis no separador "Network" (Rede) do browser
+Porquê: Para cumprir o requisito de segurança e proteger a privacidade dos dados. Requerido no exercício (4.).
+
+6 - O quê: A app é totalmente responsiva em telemóvel e desktop.
+Porquê: Melhora a UX. Requerido no exercício (1.)
+
+7 - O quê: Corrigir a dupla paginação aplicada aos produtos na tabela. A paginação passa agora a ser feita apenas no servidor.
+Porquê: As queries estavam corretas no backend, mas o frontend voltava a paginar os resultados, o que impedia que todos os produtos da página selecionada aparecessem na tabela se a pagina selecionada fosse superior a 1
+
+8 - O quê: Adicionar um indicador de carregamento ao obter novos dados.  
+Porquê: Melhoria da UX.
+
+9 - O quê: Mudar e titulo e descrição da página
+Porquê: Melhoria rápida que torna a página mais profissional e atrativa.
+
+10 – O quê: Implementar a funcionalidade de exportar dados para CSV.
+Porquê: O botão do dashboard não executava nenhuma acção.
+
+11- O quê: Implementar sistema de autenticação com Firebase Auth + JWT tokens. Usar Middleware para rotas públicas/privadas.
+Porquê: Adiciona segurança à aplicação através de autenticação. Os utilizadores agora precisam de fazer login para aceder ao dashboard. Os tokens são armazenados de forma segura em localStorage.
+
+12 - O quê: Proteger rotas e endpoints da API com verificação de JWT.
+Porquê: Garante que apenas utilizadores autenticados podem aceder aos dados sensíveis. O endpoint `/api/products` verifica o token no cabeçalho `Authorization` antes de retornar dados.
+
+13 - O quê: Migrar dados de produtos do ficheiro JSON hardcoded para Firestore.
+Porquê: Melhora escalabilidade e flexibilidade. Agora os produtos são armazenados numa base de dados real em vez de um ficheiro estático. Implementada paginação com `offset()` e `limit()` do Firestore para melhor performance.
+
+14 - O quê: Implementar melhorias de segurança no sistema de autenticação.
+Porquê: Proteger dados sensíveis e contra ataques comuns. As mudanças incluem:
+
+- Remover tokens de localStorage e usar apenas HTTP-only cookies
+- Adicionar flags `Secure` e `SameSite=Strict` aos cookies
+
+### Considerações
